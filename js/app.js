@@ -56,7 +56,6 @@ window.onload = function(){
         removeErrors();
     })
 
-
     //เมื่อคลิก send จะเปลี่ยนหน้าเป็น Thank You
     let showThankMessage = () => {
         thankContainer.classList.add('email-thank--success');
@@ -85,7 +84,17 @@ window.onload = function(){
         }
     });
     
-    
+    // เมื่อกดพิมพ์ฺในช่อง input แล้วกด Enter จะเกิดเหตุการณ์ต่างๆ
+    emailInput.addEventListener('keydown', function(event) {
+        if (emailIsValid(emailInput.value) && event.keyCode === 13) {
+         event.preventDefault();
+         showThankMessage();
+        }else if(event.keyCode === 13){
+            addErrors();
+        }else if(event.keyCode === 8){
+            removeErrors();
+        }
+      });
 
 }
     
